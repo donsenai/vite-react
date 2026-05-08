@@ -1,0 +1,39 @@
+import styles from './style.module.scss'
+import axios from 'axios';
+import { useEffect, useState } from 'react';
+import 'bootstrap/dist/css/bootstrap.min.css';
+
+export default function Countries() {
+
+    const [countries, setCountries] = useState([]);
+
+    useEffect(() => {
+        getCountries();
+    }, []);
+
+    async function getCountries() {
+        const res = await axios.get('https://restcountries.com/v3.1/all?fields=name,capital,currencies')
+        setCountries(res.data);
+        console.log(res.data);
+    }
+
+    return (
+        <>
+            <h1 className={styles.products}>Lista dos países</h1>
+
+            <div className="row row-cols-1 row-cols-md-3 g-4">
+                { countries.map((country: any) => (
+                    <div className="col" key={country.id}>
+                        <div className="card h-100">
+                        <div className="card-body">
+                            <h5 className="card-title">{country.name.common}</h5>
+                            <p className="card-text">Capital: {country.capital}</p>
+                            <p className="card-text"></p>
+                        </div>
+                    </div>
+                </div>
+                ))}
+            </div>
+        </>
+    );
+}

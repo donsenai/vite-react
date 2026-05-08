@@ -6,6 +6,7 @@ import Products from './pages/products'
 
 import NavBar from './components/navBar'
 import SideBar from './components/sideBar'
+import Countries from './pages/countries'
 
 function App() {
   const [sideBarOpen, setSideBarOpen] = useState(false)
@@ -16,6 +17,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home/>}></Route>
         <Route path="products/" element={<Products/>}></Route>
+        <Route path="countries/" element={<Countries/>}></Route>
       </Routes>
     </>
   )
